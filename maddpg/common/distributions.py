@@ -262,6 +262,7 @@ class SoftMultiCategoricalPd(Pd):  # doesn't work yet
 class DiagGaussianPd(Pd):
     def __init__(self, flat):
         self.flat = flat
+        print(flat)
         mean, logstd = tf.split(axis=1, num_or_size_splits=2, value=flat)
         self.mean = mean
         self.logstd = logstd
@@ -313,12 +314,16 @@ def make_pdtype(ac_space):
         assert len(ac_space.shape) == 1
         return DiagGaussianPdType(ac_space.shape[0])
     elif isinstance(ac_space, spaces.Discrete):
+
         # return CategoricalPdType(ac_space.n)
+        print(ac_space.n)
         return SoftCategoricalPdType(ac_space.n)
     elif isinstance(ac_space, MultiDiscrete):
         #return MultiCategoricalPdType(ac_space.low, ac_space.high)
+
         return SoftMultiCategoricalPdType(ac_space.low, ac_space.high)
     elif isinstance(ac_space, spaces.MultiBinary):
+
         return BernoulliPdType(ac_space.n)
     else:
         raise NotImplementedError

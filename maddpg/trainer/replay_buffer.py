@@ -48,7 +48,7 @@ class ReplayBuffer(object):
 
     def make_latest_index(self, batch_size):
         idx = [(self._next_idx - 1 - i) % self._maxsize for i in range(batch_size)]
-        np.random.shuffle(idx)
+        np.random.shuffle(idx) # the latest batch_size index of transitions that will be sampled.
         return idx
 
     def sample_index(self, idxes):
@@ -65,7 +65,7 @@ class ReplayBuffer(object):
         Returns
         -------
         obs_batch: np.array
-            batch of observations
+            batch of observations #Questions: what's the difference between observation and state?
         act_batch: np.array
             batch of actions executed given obs_batch
         rew_batch: np.array
