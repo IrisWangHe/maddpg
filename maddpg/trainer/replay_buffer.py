@@ -65,7 +65,7 @@ class ReplayBuffer(object):
         Returns
         -------
         obs_batch: np.array
-            batch of observations #Questions: what's the difference between observation and state?
+            batch of observations #Questions: what's the difference between observations and states?
         act_batch: np.array
             batch of actions executed given obs_batch
         rew_batch: np.array
