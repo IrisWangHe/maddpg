@@ -191,4 +191,5 @@ def train(arglist):
 
 if __name__ == '__main__':
     arglist = parse_args()
+    np.random.seed(10)
     train(arglist)
